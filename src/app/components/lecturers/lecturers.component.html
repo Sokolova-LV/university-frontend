@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Викладачі</h2>
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Пошук викладача за ім'ям">
+    <button (click)="searchLecturers()">Пошук</button>
+
+    <ul>
+        <li *ngFor="let lecturer of lectures">
+            {{lecturer.name}} - {{lecturer.degree}}
+            <button (click)="selectLecturerForEdit(lecturer)">Редагувати</button>
+            <button (click)="deleteLecturer(lecturer._id)">Видалити</button>
+
+        </li>
+    </ul>
+    <h3>Додати нового викладача</h3>
+    <form (ngSubmit)="createLecturer()">
+        <label for="name">Прізвище, ім'я, по батькові:</label>
+        <input type="text" id="name" [(ngModel)]="newLecturer.name" name="name" required>
+
+        <label for="degree">Науковий ступінь:</label>
+        <input type="text" id="degree" [(ngModel)]="newLecturer.degree" name="degree" required>
+
+        <label for="position">Посада:</label>
+        <input type="text" id="position" [(ngModel)]="newLecturer.position" name="position" required>
+
+        <label for="experience">Стаж роботи:</label>
+        <input type="number" id="experience" [(ngModel)]="newLecturer.experience" name="experience" required>
+
+        <button type="submit">Додати викладача</button>
+    </form>
+
+    <div *ngIf="selectedLecturer">
+        <h3>Редагувати інформацію про викладача</h3>
+        <form (ngSubmit)="updateLecturer()">
+            <label for="editName">Прізвище, ім'я, по батькові:</label>
+            <input type="text" id="editName" [(ngModel)]="selectedLecturer.name" name="editName" required>
+
+            <label for="editDegree">Науковий ступінь:</label>
+            <input type="text" id="editDegree" [(ngModel)]="selectedLecturer.degree" name="editDegree" required>
+
+            <label for="editPosition">Посада:</label>
+            <input type="text" id="editPosition" [(ngModel)]="selectedLecturer.position" name="editPosition" required>
+
+            <label for="editExperience">Стаж роботи:</label>
+            <input type="number" id="editExperience" [(ngModel)]="selectedLecturer.experience" name="editExperience" required>
+
+            <button type="submit">Оновити</button>
+            <button type="button" (click)="clearSelection()">Відмінити</button>
+        </form>
+    </div>
+</body>
+</html>

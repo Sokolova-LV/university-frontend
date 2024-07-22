@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Розклад</h2>
+
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Пошук за номером аудиторії, типом та роком">
+    <button (click)="searchWorkloads()">Пошук</button>
+
+    <ul>
+        <li *ngFor="let workload of workloads">
+            Lecturer ID: {{workload.lecturer_id}} - Subject ID: {{workload.subject_id}}
+            <button (click)="selectWorkloadForEdit(workload)">Редагувати</button>
+            <button (click)="deleteWorkload(workload._id)">Видалити</button>
+        </li>
+    </ul>
+
+    <h3>Додати новий розклад</h3>
+    <form (ngSubmit)="createWorkload()">
+        <label for="lecturer_id">Викладач:</label>
+        <input type="text" id="lecturer_id" [(ngModel)]="newWorkload.lecturer_id" name="lecturer_id" required>
+
+        <label for="subject_id">Дисципліна:</label>
+        <input type="text" id="subject_id" [(ngModel)]="newWorkload.subject_id" name="subject_id" required>
+
+        <label for="group_number">Номер аудиторії:</label>
+        <input type="text" id="group_number" [(ngModel)]="newWorkload.group_number" name="group_number" required>
+
+        <label for="type">Тип заняття:</label>
+        <input type="text" id="type" [(ngModel)]="newWorkload.type" name="type" required>
+
+        <label for="year">Рік:</label>
+        <input type="number" id="year" [(ngModel)]="newWorkload.year" name="year" required>
+
+        <button type="submit">Додати розклад</button>
+    </form>
+
+    <div *ngIf="selectedWorkload">
+        <h3>Редагувати розклад</h3>
+        <form (ngSubmit)="updateWorkload()">
+            <label for="editLecturerId">Викладач:</label>
+            <input type="text" id="editLecturerId" [(ngModel)]="selectedWorkload.lecturer_id" name="editLecturerId" required>
+
+            <label for="editSubjectId">Дисципліна:</label>
+            <input type="text" id="editSubjectId" [(ngModel)]="selectedWorkload.subject_id" name="editSubjectId" required>
+
+            <label for="editGroupNumber">Номер аудиторії:</label>
+            <input type="text" id="editGroupNumber" [(ngModel)]="selectedWorkload.group_number" name="editGroupNumber" required>
+
+            <label for="editType">Вид заняття:</label>
+            <input type="text" id="editType" [(ngModel)]="selectedWorkload.type" name="editType" required>
+
+            <label for="editYear">Рік:</label>
+            <input type="text" id="editYear" [(ngModel)]="selectedWorkload.year" name="editYear" required>
+
+            <button type="submit">Оновити розклад</button>
+            <button type="button" (click)="clearSelection()">Відмінити</button>
+        </form>
+    </div>
+</body>
+</html>

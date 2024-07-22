@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Дисципліни</h2>
+
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Пошук дисципліни за назвою">
+    <button (click)="searchSubjects()">Пошук</button>
+
+    <ul>
+        <li *ngFor="let subject of subjects">
+            {{subject.name}}
+            <button (click)="selectSubjectForEdit(subject)">Редагувати</button>
+            <button (click)="deleteSubject(subject._id)">Видалити</button>
+        </li>
+    </ul>
+
+    <h3>Додати нову дисципліну</h3>
+    <form (ngSubmit)="createSubject()">
+        <label for="name">Назва:</label>
+        <input type="text" id="name" [(ngModel)]="newSubject.name" name="name" required>
+
+        <label for="lecture_hours">Лекційні години:</label>
+        <input type="number" id="lecture_hours" [(ngModel)]="newSubject.lecture_hours" name="lecture_hours" required>
+
+        <label for="practical_hours">Практичні години</label>
+        <input type="number" id="practical_hours" [(ngModel)]="newSubject.practical_hours" name="practical_hours" required>
+
+        <button type="submit">Додати предмет</button>
+    </form>
+
+    <div *ngIf="selectedSubject">
+        <h3>Редагувати інформацію про дисципліну</h3>
+        <form (ngSubmit)="updateSubject()">
+            <label for="editName">Назва:</label>
+            <input type="text" id="editName" [(ngModel)]="selectedSubject.name" name="editName" required>
+
+            <label for="editLectureHours">Лекційні години:</label>
+            <input type="number" id="editLectureHours" [(ngModel)]="selectedSubject.lecture_hours" name="editLectureHours" required>
+
+            <label for="editPracticalHours">Практичні години:</label>
+            <input type="number" id="editPracticalHours" [(ngModel)]="selectedSubject.practical_hours" name="editPracticalHours" required>
+
+            <button type="submit">Оновити</button>
+            <button type="button" (click)="clearSelection()">Відмінити</button>
+        </form>
+    </div>
+</body>
+</html>
