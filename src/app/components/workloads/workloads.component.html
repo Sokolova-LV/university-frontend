@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Розклад</h2>
+<h2>Розклад</h2>
 
     <input type="text" [(ngModel)]="searchQuery" placeholder="Пошук за номером аудиторії, типом та роком">
     <button (click)="searchWorkloads()">Пошук</button>
@@ -43,13 +35,16 @@
         <h3>Редагувати розклад</h3>
         <form (ngSubmit)="updateWorkload()">
             <label for="editLecturerId">Викладач:</label>
-            <input type="text" id="editLecturerId" [(ngModel)]="selectedWorkload.lecturer_id" name="editLecturerId" required>
+            <input type="text" id="editLecturerId" [(ngModel)]="selectedWorkload.lecturer_id" name="editLecturerId"
+                required>
 
             <label for="editSubjectId">Дисципліна:</label>
-            <input type="text" id="editSubjectId" [(ngModel)]="selectedWorkload.subject_id" name="editSubjectId" required>
+            <input type="text" id="editSubjectId" [(ngModel)]="selectedWorkload.subject_id" name="editSubjectId"
+                required>
 
             <label for="editGroupNumber">Номер аудиторії:</label>
-            <input type="text" id="editGroupNumber" [(ngModel)]="selectedWorkload.group_number" name="editGroupNumber" required>
+            <input type="text" id="editGroupNumber" [(ngModel)]="selectedWorkload.group_number" name="editGroupNumber"
+                required>
 
             <label for="editType">Вид заняття:</label>
             <input type="text" id="editType" [(ngModel)]="selectedWorkload.type" name="editType" required>
@@ -61,5 +56,3 @@
             <button type="button" (click)="clearSelection()">Відмінити</button>
         </form>
     </div>
-</body>
-</html>

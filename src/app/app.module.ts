@@ -24,9 +24,6 @@ import { routes } from "./app.routes";
         HttpClient,
         RouterModule.forRoot(routes)
     ],
-    exports: [
-        WorkloadsComponent
-    ]
     providers: [],
     bootstrap: [AppComponent]
 })

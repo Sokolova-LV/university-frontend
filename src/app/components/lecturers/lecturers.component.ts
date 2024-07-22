@@ -16,7 +16,7 @@ export class LecturersComponent implements OnInit {
         name: '',
         degree: '',
         position: '',
-        experience: 0
+        experience: 0,
     };
 
     searchQuery: string = '';
